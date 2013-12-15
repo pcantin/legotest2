@@ -136,19 +136,19 @@ TestSequence::Reset(void){
   m_MotorUpDwn.GetMotor()->setSpeed(130);
   m_MotorUpDwn.CountedTurn(2, gUpDwnMotorDown);  
 
-  m_MotorInOut.GetMotor()->setSpeed(130);
+  m_MotorInOut.GetMotor()->setSpeed(120);
   m_MotorInOut.CountedTurn(2, gInOutMotorUp);  
 }
 
 void
 TestSequence::Disassemble(void){
-  m_MotorUpDwn.GetMotor()->setSpeed(180);
+  m_MotorUpDwn.GetMotor()->setSpeed(160);
   m_MotorUpDwn.CountedTurn(9, gUpDwnMotorUp, 2);  
 
   m_MotorUpDwn.GetMotor()->setSpeed(130);
   m_MotorUpDwn.CountedTurn(9, gUpDwnMotorUp, 1);  
 
-  m_MotorUpDwn.GetMotor()->setSpeed(130);
+  m_MotorUpDwn.GetMotor()->setSpeed(120);
   m_MotorUpDwn.CountedTurn(8, gUpDwnMotorDown);  
 }
 
@@ -191,7 +191,7 @@ TestSequence::Check(int i_isOn){
   }
   
   if(res == 1){
-    m_MotorUpDwn.GetMotor()->setSpeed(130);
+    m_MotorUpDwn.GetMotor()->setSpeed(120);
     m_MotorUpDwn.CountedTurn(2, gUpDwnMotorDown);  
 
     m_Servo.GetServo()->write(gModeServoRest);
