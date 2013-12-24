@@ -129,12 +129,12 @@ TestSequence::SetServo(Servo *i_servo, int i_pin){
 }
 
 void
-TestSequence::Reset(void){
-  m_Servo.GetServo()->write(gModeServoRest);
-  delay(1000);
-  
+TestSequence::Reset(void){  
   m_MotorUpDwn.GetMotor()->setSpeed(130);
   m_MotorUpDwn.CountedTurn(2, gUpDwnMotorDown);  
+
+  m_Servo.GetServo()->write(gModeServoRest);
+  delay(1000);
 
   m_MotorInOut.GetMotor()->setSpeed(120);
   m_MotorInOut.CountedTurn(2, gInOutMotorUp);  
@@ -170,24 +170,28 @@ TestSequence::Check(int i_isOn){
   m_MotorUpDwn.GetMotor()->setSpeed(130);
   m_MotorUpDwn.CountedTurn(2, gUpDwnMotorUp, 1);  
   
-  
-  gIRread = readIRDetector(10, 13);
+  m_MotorUpDwn.GetMotor()->setSpeed(120);
+  m_MotorUpDwn.CountedTurn(2, gUpDwnMotorUp, 0);  
+
+
   delay(1000);  
+  gIRread = readIRDetector(10, 13);
+  delay(10);  
   
   if(i_isOn){
     //Check if LEGO is on
-//    if(gIRread == 1){
+    if(gIRread != 1){
       res = 1;
-//    } else {
-//       Serial.println("Check failed!: Brick should be ON");
-//    }
+    } else {
+       Serial.println("Check failed!: Brick should be ON");
+    }
   } else {
     //Check if LEGO is off
-//    if(gIRread != 1){
+    if(gIRread == 1){
       res = 1;
-//    } else {
-//       Serial.println("Check failed!: Brick should be OFF");
-//    }
+    } else {
+      Serial.println("Check failed!: Brick should be OFF");
+    }
   }
   
   if(res == 1){
