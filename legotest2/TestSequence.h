@@ -76,6 +76,7 @@ public:
   void Reset(void);
   void Disassemble(void);
   void Assemble(void);
+  void Release(void);
   int  Check(int i_isOn);
   void StalledTest(AF_DCMotor *i_motor);
 
