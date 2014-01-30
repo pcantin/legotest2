@@ -85,6 +85,7 @@ void loop() {
     
     if(1 != gTestIsRunning){
       EEPROM_writeAnything(0, gSavedData);
+      gTestObj.Reset();
     }
     
     Serial.print("Total: ");
