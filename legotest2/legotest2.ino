@@ -92,7 +92,7 @@ void loop() {
     Serial.println(gSavedData.totalIter);
   }
   
-  if(1 == gTestIsRunning){
+  if(1 == gTestIsRunning){  
     delay(100); 
   }else{
     delay(1000); 
