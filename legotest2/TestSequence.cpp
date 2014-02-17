@@ -143,7 +143,7 @@ TestSequence::Reset(void){
   m_MotorInOut.GetMotor()->setSpeed(120);
   m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
   m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
-  m_MotorInOut.CountedTurn(65, gInOutMotorDown, 0);  
+  m_MotorInOut.CountedTurn(100, gInOutMotorDown, 0);  
 }
 
 void
@@ -173,13 +173,13 @@ TestSequence::Assemble(void){
   m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
   m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
 //  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
-  m_MotorInOut.CountedTurn(65, gInOutMotorDown, 0);  
+  m_MotorInOut.CountedTurn(100, gInOutMotorDown, 0);  
 }
 
 void
 TestSequence::Release(void){
   m_MotorInOut.GetMotor()->setSpeed(120);
-  m_MotorInOut.CountedTurn(65, gInOutMotorDown, 0);  
+  m_MotorInOut.CountedTurn(100, gInOutMotorDown, 0);  
 }
 
 
