@@ -109,9 +109,26 @@ SensorItem::~SensorItem(){
     
 
 TestSequence::TestSequence(){
+  ResetErrCount();
+  m_lastErr = ERR_None;
 }
 
 TestSequence::~TestSequence(){
+}
+
+void
+TestSequence::ResetErrCount(void){
+  m_errTot = 0;
+}
+
+void
+TestSequence::AddErr(void){
+  m_errTot++;
+}
+
+void
+TestSequence::SetErrType(ErrType i_newErr){
+  m_lastErr = i_newErr;
 }
 
 void 
@@ -206,8 +223,15 @@ TestSequence::Check(int i_isOn){
     //Check if LEGO is on
     if(gIRread != 1){
       res = 1;
+      ResetErrCount();
     } else {
        Serial.println("Check failed!: Brick should be ON");
+       AddErr();
+       SetErrType(ERR_NotON);
+       
+       if(GetErrTot() <= ERR_MAX){
+         res = 1;
+       }
     }
   } else {
     //Check if LEGO is off
@@ -215,6 +239,7 @@ TestSequence::Check(int i_isOn){
       res = 1;
     } else {
       Serial.println("Check failed!: Brick should be OFF");
+      SetErrType(ERR_NotOFF);
     }
   }
   

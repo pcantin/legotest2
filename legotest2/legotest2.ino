@@ -97,5 +97,10 @@ void loop() {
   }else{
     delay(1000); 
     Serial.print("Stoped total: ");
-    Serial.println(gSavedData.totalIter);  }
+    Serial.print(gSavedData.totalIter);
+    Serial.print(" / lastErr: ");
+    Serial.print(gTestObj.GetErrType());
+    Serial.print(" / ErrTot: ");
+    Serial.println(gTestObj.GetErrTot());
+  }
 }

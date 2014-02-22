@@ -4,6 +4,15 @@
 #ifndef TESTSEQUENCE_H
 #define TESTSEQUENCE_H
 
+#define ERR_MAX 5
+
+enum ErrType { 
+  ERR_None,
+  ERR_NotON,
+  ERR_NotOFF,
+};
+
+
 enum MotorType { 
   MOTOR_None,
   MOTOR_DC,
@@ -79,11 +88,21 @@ public:
   void Release(void);
   int  Check(int i_isOn);
   void StalledTest(AF_DCMotor *i_motor);
+  
+  void ResetErrCount(void);
+  int  GetErrTot (void) {return m_errTot;};
+  void AddErr(void);
+  
+  void     SetErrType(ErrType i_newErr);
+  ErrType  GetErrType(void) {return m_lastErr;};
 
 private:
   MotorItem m_MotorUpDwn;
   MotorItem m_MotorInOut;
   MotorItem m_Servo;
+  
+  int      m_errTot;
+  ErrType  m_lastErr;
 };
 
 
