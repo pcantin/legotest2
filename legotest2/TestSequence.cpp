@@ -13,6 +13,8 @@ extern int gModeServoRest;
 extern int gModeServoIn;
 extern int gIRread;
 
+#define IO_MOTOR_RESET 110
+
 
 MotorItem::MotorItem(){
   m_Type = MOTOR_None;
@@ -158,16 +160,16 @@ TestSequence::Reset(void){
   m_MotorInOut.CountedTurn(8000, gInOutMotorDown, 2);  
   
   m_MotorInOut.GetMotor()->setSpeed(120);
-  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
-  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
-  m_MotorInOut.CountedTurn(100, gInOutMotorDown, 0);  
+  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 1);  
+  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 0);  
+  m_MotorInOut.CountedTurn(IO_MOTOR_RESET, gInOutMotorDown, 0);  
 }
 
 void
 TestSequence::Disassemble(void){
   m_MotorInOut.GetMotor()->setSpeed(160);
-  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
-  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
+  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 1);  
+  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 0);  
   
   m_MotorUpDwn.GetMotor()->setSpeed(160);
   m_MotorUpDwn.CountedTurn(9000, gUpDwnMotorUp, 2);  
@@ -187,16 +189,16 @@ TestSequence::Assemble(void){
   m_MotorInOut.CountedTurn(8000, gInOutMotorDown, 2);  
   
   m_MotorInOut.GetMotor()->setSpeed(120);
-  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
-  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
+  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 1);  
+  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 0);  
 //  m_MotorInOut.CountedTurn(2000, gInOutMotorUp, 2);  
-  m_MotorInOut.CountedTurn(100, gInOutMotorDown, 0);  
+  m_MotorInOut.CountedTurn(IO_MOTOR_RESET, gInOutMotorDown, 0);  
 }
 
 void
 TestSequence::Release(void){
   m_MotorInOut.GetMotor()->setSpeed(120);
-  m_MotorInOut.CountedTurn(100, gInOutMotorDown, 0);  
+  m_MotorInOut.CountedTurn(IO_MOTOR_RESET, gInOutMotorDown, 0);  
 }
 
 
